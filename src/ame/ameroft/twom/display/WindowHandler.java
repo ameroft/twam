@@ -29,7 +29,7 @@ public class WindowHandler implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent event) {
-    
+    	//If the window is closing, create and write a disconnect packet to server then exit.
         Packet01Disconnect packet = new Packet01Disconnect(handler.getWorld().getEntityManager().getPlayer().getName());
         packet.writeData(handler.getClient());
         System.exit(1);

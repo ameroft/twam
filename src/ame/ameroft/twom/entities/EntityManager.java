@@ -12,6 +12,7 @@ public class EntityManager {
 	private Handler handler;
 	private Player player;
 	private ArrayList<Entity> entities;
+	//Defines a comparator that sorts the listed entities array.
 	private Comparator<Entity> rSort = new Comparator<Entity>() {
 
 		@Override
@@ -24,25 +25,38 @@ public class EntityManager {
 		}
 		
 	};
+	/**
+	 * Controls and contains all entities in the game
+	 * @param handler
+	 * @param player
+	 */
 	public EntityManager(Handler handler, Player player) {
 		this.handler = handler;
 		this.player = player;
+		//Initializes hte entity array and adds the player
 		entities = new ArrayList<Entity>();
 		entities.add(player);
 	}
+	//Every update the iterator cycles through all the entities and updates them.
 	public void update() {
 		Iterator<Entity> it = entities.iterator();
 	while(it.hasNext()) {
 			Entity e = it.next();
 			e.update();
+			//If the entities active state is false then it is removed.
 			if(!e.isActive()) {
 				it.remove();
 			}
 		}
+	//Sorts the array again
 		entities.sort(rSort);
 		
 		
 			}
+	/**
+	 * Renders all the entities
+	 * @param g
+	 */
 	public void render(Graphics g) {
 		for(Entity e:entities) {
 		
@@ -73,6 +87,7 @@ public class EntityManager {
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
 	}
+	//Using an Iterator, searches and returns the specified entity.
 	 public Entity getEntity(String username) {
 		 Iterator<Entity> iter = getEntities().iterator();
 

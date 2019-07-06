@@ -5,7 +5,11 @@ import ame.ameroft.twom.input.KeyManager;
 import ame.ameroft.twom.input.MouseManager;
 import ame.ameroft.twom.net.Client;
 import ame.ameroft.twom.worlds.World;
-
+/**
+ * 
+ * @author Emmanuel
+ * In Summary contains a bunch of Getters and Setters for various Objects.
+ */
 public class Handler {
 	private Game game;
 	private World world;

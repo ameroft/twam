@@ -19,13 +19,14 @@ public abstract class Mob extends Entity {
 	protected float xMove,yMove;
 	public Mob(Handler handler,String name,int level, float x, float y,int width,int height) {
 		super(handler,x, y, width, height);
-
+		//Sets the mob level and name, speed and their movement.
 		this.level = level;
 		this.name = name;
 
 		speed = DEFAULT_SPEED;
 		xMove =0;
 		yMove =0;
+		//All mobs are unique, each given a special tag.
 		tag = "#0000";
 	}
 
@@ -36,6 +37,7 @@ public abstract class Mob extends Entity {
 		this.level = level;
 	}
 	
+	//Checks for collision and then moves mob
 	public void move() {
 		if(!checkEntityCollision(xMove,0f))
 			moveX();
@@ -43,12 +45,13 @@ public abstract class Mob extends Entity {
 			moveY();
 	}
 	
+	//Movment along the X-Axis
 	public void moveX() {
 		if(xMove > 0){//Moving right
 			dir = 3;
-
+			
 			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
-
+			
 			if(!collisionWithTile(tx, (int) (y + bounds.y) / Tile.TILEHEIGHT) &&
 					!collisionWithTile(tx, (int) (y + bounds.y + bounds.height) / Tile.TILEHEIGHT)){
 				x += xMove;

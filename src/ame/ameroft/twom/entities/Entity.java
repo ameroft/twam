@@ -17,10 +17,12 @@ public abstract class Entity {
 	private boolean active = true;
 	protected String name;
 	
+	//Is it active on the screen
 	public boolean isActive() {
 		return active;
 	}
 	public Entity(Handler handler, float x,float y,int width,int height) {
+		//Sets the default attributes of any entity
 		this.handler = handler;
 		this.x = x;
 		this.y = y;
@@ -32,7 +34,7 @@ public abstract class Entity {
 	}
 	public abstract void update();
 	
-	
+	//Checks entity collision, cycles through all entities and checks if any of them intersect with each other.
 	public boolean checkEntityCollision(float xOffset,float yOffset) {
 		for(Entity e:handler.getWorld().getEntityManager().getEntities()) {
 			if(e.equals(this))
@@ -48,7 +50,7 @@ public abstract class Entity {
 		
 	}
 	public abstract void die();
-	
+	//If the entity is attacked
 	public void hurt(int dmg) {
 		hp -=dmg;
 		if(hp <=0) {
@@ -56,6 +58,7 @@ public abstract class Entity {
 			die();
 		}
 	}
+	//Return the collision bounds of the specified entity.
 	public Rectangle getCollisionBounds(float xOffset,float yOffset) {
 		return new Rectangle((int)(x + bounds.x + xOffset),(int)(y + bounds.y + yOffset),bounds.width,bounds.height);
 	}
